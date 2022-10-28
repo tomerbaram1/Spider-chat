@@ -2,8 +2,7 @@ import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
-import Contact from "../Contact";
-import { FiMenu,FiX,FiZ } from "react-icons/fi"
+import "./header.css"
 import { useState } from "react";
 
 const Header = () => {
@@ -29,20 +28,19 @@ setMenuClicked(!menuClicked)
 
       <div >
         <Link className="text-link" to="/">
-          <span className="logo">CarMarket</span>
+          <span className="logo">Whatsapp</span>
         </Link>
       </div>
-      {menuClicked? <FiX size={25} onClick={toggleMenuClick} className='header-menu'/>
-      : <FiMenu size={25} className='header-menu' onClick={toggleMenuClick} />}
-      {user && user.isAdmin? (
+
+      {user ? (
         <div>
-          <Link className="text-link" to="/add">
-            <FaUser /> Add Car
-          </Link>
+          
+            <FaUser /> Start Writing!
+          
         </div>
       ) : (
-        <><Link className="text-link" to="/contact">
-        <FaUser /> Contact us
+        <><Link className="text-link" to="/login">
+        <FaUser /> login to continue
       </Link></>)}
 
       <div>

@@ -3,9 +3,10 @@ import { FaSignInAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Spinner from "../components/Spinner";
+import "./login.css"
+
 import { login, reset } from "../features/auth/authSlice";
-const Login = () => {
+const Login = (props) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { user, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
 
@@ -26,7 +27,9 @@ const Login = () => {
     }
 
     if (isSuccess || user) {
+      toast.success("Logged In")
       navigate("/");
+      props.startSocket()
     }
 
     dispatch(reset);
@@ -49,16 +52,13 @@ const Login = () => {
     dispatch(login(userData));
   };
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+
 
   return (
     <>
       <section className="heading">
         <p>
-          <FaSignInAlt />
-          Login
+          Please Login to continue
         </p>
       </section>
       <section className="form">

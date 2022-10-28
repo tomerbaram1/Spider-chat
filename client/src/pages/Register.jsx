@@ -3,8 +3,11 @@ import { FaUser } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Spinner from "../components/Spinner";
+import makeToast from "../Toaster";
 import { register, reset } from "../features/auth/authSlice";
+import "./login.css"
+
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -18,16 +21,17 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { user, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
+      toast.error("Email is already linked with another account.");
     }
 
     if (isSuccess || user) {
+      toast.success("Register Successful")
       navigate("/");
     }
 
@@ -47,6 +51,7 @@ const Register = () => {
     if (password !== password2) {
       toast.error("Passwords do not match");
     } else {
+      
       const userData = {
         name,
         email,
@@ -56,9 +61,7 @@ const Register = () => {
       dispatch(register(userData));
     }
   };
-  if (isLoading) {
-    return <Spinner />;
-  }
+ 
   return (
     <>
       <section className="heading">

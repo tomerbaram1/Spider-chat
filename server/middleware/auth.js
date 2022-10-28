@@ -1,40 +1,35 @@
 const jwt = require("jsonwebtoken");
 
-const auth = (req, res, next) => {
-  const token = req.header("x-auth-token");
-  if (!token)
-    return res.status(401).send("Access denied. Not authenticated...");
-  try {
-    const jwtSecretKey = process.env.JWT_SECRET_KEY;
-    const decoded = jwt.verify(token, jwtSecretKey);
 
-    req.user = decoded;
-    next();
-  } catch (ex) {
-    res.status(400).send("Invalid auth token...");
-  }
-};
-
-// For User Profile
-const isUser = (req, res, next) => {
-  auth(req, res, () => {
-    if (req.user._id === req.params.id || req.user.isAdmin) {
+  const auth =  (req, res, next) => {
+    try {
+      if (!req.headers.authorization) throw "Forbidden!!";
+      const token = req.headers.authorization.split(" ")[1];
+      const payload =  jwt.verify(token, process.env.JWT_SECRET_KEY);
+      req.payload = payload;
       next();
-    } else {
-      res.status(403).send("Access denied. Not authorized...");
+    } catch (err) {
+      res.status(401).json({
+        message: "Forbidden ",
+      });
     }
-  });
-};
+  };
+  
+//   const token = req.header("x-auth-token");
+//   if (!token)
+//     return res.status(401).send("Access denied. Not authenticated...");
+//   try {
+//     const jwtSecretKey = process.env.JWT_SECRET_KEY;
+//     const decoded =  jwt.verify(token, jwtSecretKey);
 
-// For Admin
-const isAdmin = (req, res, next) => {
-  auth(req, res, () => {
-    if (req.user.isAdmin) {
-      next();
-    } else {
-      res.status(403).send("Access denied. Not authorized...");
-    }
-  });
-};
+//     req.decoded = decoded;
+//     next();
+//   } catch (ex) {
+//     res.status(400).send("Invalid auth token...");
+//   }
+// };
 
-module.exports = { auth, isUser, isAdmin };
+
+
+
+module.exports = { auth };
