@@ -1,45 +1,92 @@
 .chat-container{
+  height: calc(100%);
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  height: 100%;
+  align-items: center;
   padding: 30px 0;
-  width: 100%;
-  height: 100vh;
+  width: 50vw;
   display: flex;
   align-content: center;
   justify-content: center;
   background: url('https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg') top left no-repeat;
   background-size: cover;
 }
-.chat{
-  width: 100%;
+
+
+
+.msg {
+
+  padding: 1.25em !important;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+  color: #fff !important;
+  width: 100% !important;
+  display: block !important;
+  text-align: left !important;
+  border-radius: 3px !important;
+  margin-top: 2% !important;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
+}
+
+.userMsg {
+  align-self: flex-end !important;
+  text-align: right !important;
+  background-color: lightslategray
+}
+
+.diffMsg {
+  align-self: flex-end ;
   
+  text-align: left !important;
+  background-color:#2ecc71;
 }
+
+.messages {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100vh;
+
+}
+
+.myTime {
+  
+  font-size: small;
+  text-align: right;
+}
+
+.yourTime {
+  
+  font-size: small;
+  text-align: left;
+}
+
+@media only screen and (max-width: 600px) {
+  .msg {
+    width: 70% !important;
+  }
+}
+
 .room{
-    height: 20vh;
-    max-height: 100%;
-    border-radius: 10px;
-    max-width: 375px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.form{
-    height: 20vh;
-    border-radius: 10px;
-    max-width: 375px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
 
 
+.group-title{
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: whitesmoke;
+  margin-top: 6%;
+}
+.group-title:hover{
+  color: green
+}
 
 .input { width: 100%; padding: 10px;
    border: 1px rgba(0, 0, 0, 0.397) solid;

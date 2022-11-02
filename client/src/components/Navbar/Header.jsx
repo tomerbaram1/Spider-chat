@@ -28,7 +28,7 @@ setMenuClicked(!menuClicked)
 
       <div >
         <Link className="text-link" to="/">
-          <span className="logo">Whatsapp</span>
+          <span className="logo">Whatz - app</span>
         </Link>
       </div>
 

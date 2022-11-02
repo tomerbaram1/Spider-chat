@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "./login.css"
 
 import { login, reset } from "../features/auth/authSlice";
-const Login = (props) => {
+const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -29,7 +29,7 @@ const Login = (props) => {
     if (isSuccess || user) {
       toast.success("Logged In")
       navigate("/");
-      props.startSocket()
+      
     }
 
     dispatch(reset);

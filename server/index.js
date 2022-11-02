@@ -11,8 +11,9 @@ const port =  process.env.PORT || 3001;
 const register = require('./routes/register')
 const login = require('./routes/login')
 const room = require('./routes/room')
+const message = require('./routes/message')
 const rateLimit= require('express-rate-limit')
-
+const {saveMessage} = require("./services/messages")
 const User = mongoose.model("user");
 // DB
 mongoose.connect(process.env.DB,{
@@ -27,11 +28,10 @@ mongoose.connect(process.env.DB,{
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-      origin: `http://localhost:3000`,
-      methods: ["GET", "POST"],
+      origin: '*',
     },
   });
-
+app.use(cors())
 app.use(express.json())
 app.use(morgan("dev"));
 
@@ -49,46 +49,41 @@ app.get("/",(req,res) =>{
     res.send('Welcome to Whatsapp API')
 })
 
-// let users = []
-// const addUser = (userId,socketId) =>{
-//   !users.some(user=> user.userId ===userId) &&
-//   users.push(userId,socketId)
-// }
+// io.use((socket, next) => {
+//   try {
+//     const token = socket.handshake.query.token;
 
-// const removeUser = (socketId) => {
-//   users = users.filter(user=>user.socketId !== socketId)
-// }
-// socket
+//     const payload =  jwt.verify(token, process.env.JWT_SECRET_KEY);
+//     socket.userId = payload._id;
 
-
-const jwt = require('jsonwebtoken')
-
-
-io.use((socket, next) => {
-  try {
-    const token = socket.handshake.query.token;
-
-    const payload =  jwt.verify(token, process.env.JWT_SECRET_KEY);
-    socket.userId = payload._id;
-
-    next();
-  } catch (err) {}
-});
+//     next();
+//   } catch (err) {}
+// });
 io.on('connection',(socket) =>{
 
-  console.log("Connected: " + socket.userId);
-
-  socket.on('join_room',(room) => {
+  socket.on('join',(room) => {
     socket.join(room)
-    console.log(room);
+    console.log("A user has joined group:", room);
   })
-  socket.on('send_message',(message,room,user)=>{
+
+
+  socket.on('message', async ({ message, room, name }) => {
+
+    const newMessage = await saveMessage(message, name, room);
+    console.log(newMessage);
+    io.in(room).emit('replayMessage', newMessage);
+  });
     
+
+  socket.on('leaveRoom',(room) => {
+    socket.leave(room)
+    console.log("A user has left group:", room);
   })
-    
+
+
 
     socket.on("disconnect", () => {
-      console.log(` Disconnected:` + socket.userId);
+      io.emit('message','a user has left the chat')
 
       
     })
@@ -101,6 +96,7 @@ io.on('connection',(socket) =>{
 app.use('/api/register',register)
 app.use('/api/login',login)
 app.use('/api/room',room)
+app.use('/api/message',message)
 
 
 // listener
