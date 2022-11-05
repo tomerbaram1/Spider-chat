@@ -12,6 +12,7 @@ import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 
 import Landing from "./components/Landing";
+import WaveScreen from "./components/WaveScreen";
 
 
 function App(props) {
@@ -31,6 +32,7 @@ function App(props) {
           <Routes>
 
             <Route path="/" element={<Landing/>} />
+            <Route path="/loading" element={<WaveScreen/>} />
             <Route path="/dashboard" element={<Dashboard  />} />
             <Route path="/login"  element={<Login  />} />
             <Route path="/chatroom/:room" element={<Dashboard  />} />

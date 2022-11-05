@@ -1,10 +1,10 @@
 .form{
-    height: 20%;
+    height: 50%;
     width: 70%;
-    margin: 0 auto;
-    margin-top: 100px;
+    margin-bottom: 150px;
   
   }
+  
   .form-group input,
 .form-group textarea,
 .form-group select {
@@ -14,6 +14,23 @@
   border-radius: 5px;
   margin-bottom: 10px;
   font-family: inherit;
+}
+.login__bg {
+  background-image: url(https://wallpapers.com/images/file/cool-picture-of-spider-man-logo-prqivt84zoaprdkk.jpg);
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+}
+
+.signup__bg {
+  background-image: url(https://www.creativefabrica.com/wp-content/uploads/2020/09/18/Spider-Man-Insect-silhouette-logo-design-Graphics-5546412-1.jpg);
+  height: 92vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
 }
 .btn {
     padding: 10px 20px;

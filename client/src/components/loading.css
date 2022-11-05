@@ -1,0 +1,36 @@
+.loading-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    background-color: whitesmoke;
+}
+.landing-pic{
+    width: 40vw;
+    height: 100vh;
+    border-radius: 2%;
+    background: url("../app/assets/spider-chat.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+@media only screen and (max-width: 780px) {
+
+    .loading-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        background-color: whitesmoke;
+    }
+    .landing-pic{
+        max-width: 100%;
+        display: block;
+        
+    }
+
+
+  }

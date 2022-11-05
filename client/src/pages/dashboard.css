@@ -1,0 +1,138 @@
+.card {
+    margin-top: 70px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+  }
+  
+  label {
+    font-size: 0.9rem;
+  }
+  
+  
+  .send-msg-btn {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
+    cursor: pointer;
+    border: none;
+    border-radius: 5%;
+    padding: 0.5rem 0.1rem;
+    margin-bottom: 10px;
+    width: 25%;
+    border-bottom: 1px solid #eee;
+    transition: all 0.5s;
+    background-color:  #333 ;
+    color: #eee;
+    font-size: larger;
+    
+  }
+  .send-msg-btn:hover{
+    background: black;
+
+  }
+  
+  .send-msg-btn{
+
+      background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+    -webkit-animation: 10s linear 0s normal none infinite animate;
+    -moz-animation: 10s linear 0s normal none infinite animate;
+    -ms-animation: 10s linear 0s normal none infinite animate;
+    -o-animation: 10s linear 0s normal none infinite animate;
+    animation: 10s linear 0s normal none infinite animate;
+   
+  }
+   
+  @-webkit-keyframes animate {
+    from {background-position:0 0;}
+    to {background-position: 500px 0;}
+  }
+   
+  @-moz-keyframes animate {
+    from {background-position:0 0;}
+    to {background-position: 500px 0;}
+  }
+   
+  @-ms-keyframes animate {
+    from {background-position:0 0;}
+    to {background-position: 500px 0;}
+  }
+   
+  @-o-keyframes animate {
+    from {background-position:0 0;}
+    to {background-position: 500px 0;}
+  }
+   
+  @keyframes animate {
+    from {background-position:0 0;}
+    to {background-position: 500px 0;}
+  }
+  
+.wrapper{
+    width: 10vw;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: linear-gradient(to top, #cb2d3e, #ef473a);
+    
+}
+
+.btn-nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    position: relative;
+    font-size: 1.3rem;
+    text-align: center;
+    background-image: linear-gradient(
+        to right,
+        #54b3d6,
+        #54b3d6 50%,
+        #000 50%
+      );
+      background-size: 200% 100%;
+      background-position: -100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s ease-in-out;
+}
+
+
+
+
+  .room-link {
+    text-decoration: none;
+
+  }
+  .btn-nav::before{
+    content: '';
+    background: #54b3d6;
+    display: block;
+
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+  }
+  .btn-nav:hover{
+    background-position: 0;
+  }
+  .btn-nav:hover::before {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .wrapper{
+        width: 15%;
+        height: 60vh;
+    }
+  }

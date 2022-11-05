@@ -3,7 +3,7 @@ import "./chat.css";
 export default function SendMessage({ message, setMessage, handleClick }) {
   return (
     <div>
-      <form >
+      <form className="send-message-form">
         <input
           className="input"
           label="Message"

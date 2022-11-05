@@ -10,45 +10,46 @@ export default function Messages({ chat }) {
   const { user } = useSelector((state) => state.auth);
   const messageEl = useRef(null);
   console.log("chat:",chat);
-  // useEffect(() => {
-  //   if (messageEl.current == null) {
-  //     messageEl.current.addEventListener("DOMNodeInserted", (event) => {
-  //       messageEl.current.scroll({
-  //         top: messageEl.current.scrollHeight,
-  //         behavior: "smooth",
-  //       });
-  //     });
-  //   }
-  //   console.log('messageEl:',messageEl)
-  // }, []);
+  useEffect(() => {
+    if (messageEl.current == null) {
+      messageEl.current.addEventListener("DOMNodeInserted", (event) => {
+        messageEl.current.scroll({
+          top: messageEl.current.scrollHeight,
+          behavior: "smooth",
+        });
+      });
+    }
+    console.log('messageEl:',messageEl)
+  }, [chat]);
 
   return (
-    <div>
-      <section className="messages">
+    <div >
+      <section >
 
-        <div ref={messageEl}>
+        <ul ref={messageEl} className="messages">
           
           {chat.map((message,index) => {
            return(
-            <div key={message._id} 
+            <li key={message._id} 
             className={`msg ${message.message === user.name ? 'userMsg' : 'diffMsg'}`}
             >
               <div>
-                <span className="msg-user">{message.message}</span>
-                <h3 className="msg-text">{message.name}</h3>
+                <span >{message.message}</span>
+                
+                <h3 >{message.name}</h3>
                 <div>
                 </div>
                 <div>
-                <p  className={message.message === user.name ? 'myTime' : 'yourTime'}>
+                <p>
                   {moment(message.createdAt).format("DD/MM/YY, hh:mm:ss A")}
                 </p>
 
                 </div>
               </div>
-            </div>
+            </li>
            )
           })}
-        </div>
+        </ul>
       </section>
     </div>
   );

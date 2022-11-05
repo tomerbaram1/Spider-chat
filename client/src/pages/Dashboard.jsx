@@ -14,6 +14,9 @@ import React, {
   useRef,
 } from "react";
 
+import LoadingPage from "../components/LoadingPage";
+import WaveScreen from "../components/WaveScreen";
+
 const Dashboard = (props) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
@@ -24,6 +27,7 @@ const Dashboard = (props) => {
   const [chat, setChat] = useState([]);
 
   const getChatRooms = () => {
+    
     axios
       .get("/api/room/", {
         headers: {
@@ -34,7 +38,7 @@ const Dashboard = (props) => {
         setChatrooms(response.data);
       })
       .catch((err) => {
-        setTimeout(getChatRooms, 9000);
+        setTimeout(getChatRooms, 1000);
       });
   };
 
@@ -42,6 +46,7 @@ const Dashboard = (props) => {
   const socketUrl = "http://localhost:3001/";
 
   useEffect(() => {
+    getChatRooms();
     fetchMessages(roomParam).then((messages) => {
       setChat(messages);
     });
@@ -52,8 +57,9 @@ const Dashboard = (props) => {
       });
       console.log("socket connected",socketRef);
     }
-    getChatRooms();
-  }, [socketRef,message]);
+  }, [roomParam,message]);
+
+
 
   const fetchMessages = async (room) => {
     socketRef.current?.emit('join', room);
@@ -87,40 +93,49 @@ const Dashboard = (props) => {
 
   return (
     <div >
+
+
       <div className="card">
-        <div className="card-body">
-          <label className="group-title">Groups</label>
-          <div className="chatrooms">
+        
+        <div className="wrapper">
+
             {chatrooms.map((room) => (
-              <div key={room._id} className="chatroom">
-                <div>{room.name}</div>
-                <Link
-                  to={"/chatroom/" + room.name}
+              <div   key={room._id}  >
+                <Link className="room-link"
+                  to={"/chatroom/" + room.name }
                   onClick={() => {
                     leaveRoom();
                     fetchMessages(room).then((messages) => {
                       setChat(messages);
                     });
                   }}>
-                  <button>Join</button>
+                    <p className='btn-nav' >{room.name}</p>
+
                 </Link>
               </div>
             ))}
-          </div>
-          <div className="card-chat">
+        </div>
 
-          {roomParam && (
+        <div>
+
+
+          <div >
+
+          {roomParam? roomParam && (
             <Chat
-              roomParam={roomParam}
-              chat={chat}
-              handleClick={handleClick}
-              message={message}
-              setMessage={setMessage}
+            roomParam={roomParam}
+            chat={chat}
+            handleClick={handleClick}
+            message={message}
+            setMessage={setMessage}
             />
-          )}
+            ):
+            <LoadingPage />
+          }
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

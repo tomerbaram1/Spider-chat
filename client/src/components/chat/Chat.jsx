@@ -16,22 +16,20 @@ const Chat = ({ roomParam, chat, handleClick, setMessage, message }) => {
 
   return (
     <>
+      <div className="room-name">{roomParam}</div>
       <div className="chat-container">
-          <h2>Hello {user && user.name} </h2>
         <div >
-          <div className="room">{roomParam}</div>
-          <br />
           <Messages chat={chat} message={message}/>
-          <div className="sendMessage">
+          <div >
+          </div>
+        </div>
+      </div>
 
           <SendMessage
             message={message}
             setMessage={setMessage}
             handleClick={handleClick}
           />
-          </div>
-        </div>
-      </div>
     </>
   );
 };
