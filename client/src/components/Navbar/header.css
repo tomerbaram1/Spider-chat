@@ -4,6 +4,7 @@
     position: sticky;
     top: 0px;
     height: 70px;
+    max-height:190px ;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,8 +18,10 @@
     display: none;
   }
   .logo{
-    height: 20vh;
-    width: 10vw;
+    height: 110px;
+    max-width: 300px;
+    max-height:270px ;
+    width: 120px;
     background-image: url("../../app//assets/spider-logo-transperent.png");
     background-size: cover;
   }
@@ -40,7 +43,7 @@
     transition: 250ms;
   }
 
-  header{
+  header {
     margin:0;
     padding:0;
     font-family:"arial",heletica,sans-serif;
@@ -78,3 +81,13 @@
     from {background-position:0 0;}
     to {background-position: 500px 0;}
   }
+.footer{
+  height: 10vh;
+  width: 100vw;
+  background: #2980b9;
+}
+@media only screen and (min-width: 340px) and (max-width: 990px) {
+  .text-link{
+    font-size: 2vh;
+  }
+}

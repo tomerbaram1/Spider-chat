@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -11,8 +11,9 @@ import { useSocket } from "../../features/SocketContext";
 import Messages from "./Messages";
 import SendMessage from "./SendMessage";
 
-const Chat = ({ roomParam, chat, handleClick, setMessage, message }) => {
+const Chat = ({ roomParam, chat, handleClick,socketRef, setMessage, message,fetchMessages }) => {
   const { user } = useSelector((state) => state.auth);
+  
 
   return (
     <>
@@ -30,6 +31,7 @@ const Chat = ({ roomParam, chat, handleClick, setMessage, message }) => {
             setMessage={setMessage}
             handleClick={handleClick}
           />
+          
     </>
   );
 };

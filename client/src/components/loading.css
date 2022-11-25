@@ -4,33 +4,103 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
+    height: 100vh;
+
     background-color: whitesmoke;
 }
 .landing-pic{
-    width: 40vw;
-    height: 100vh;
+    width: 40%;
+    height: 100%;
     border-radius: 2%;
     background: url("../app/assets/spider-chat.png");
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     
 }
 
-@media only screen and (max-width: 780px) {
 
+@media only screen and (min-width: 240px) and (max-width: 990px) {
     .loading-container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100vw;
-        background-color: whitesmoke;
+        margin-top: 3%;
     }
     .landing-pic{
-        max-width: 100%;
-        display: block;
+        width: 100vw;
+        height: 70%;
+        
+        background-size: cover;
+    }
+  }
+   
+  
+  
+  
+  /* Smartphones (portrait) ----------- */
+  @media only screen and (max-width: 320px) {
+    
+       .loading-container{
+        width: 100%;
+        height: 70vh;
         
     }
-
-
+    .landing-pic{
+        width: 100vw;
+        height: 100vh;
+    }
   }
+  
+  /* iPads (portrait and landscape) ----------- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    
+       .loading-container{
+        width: 100%;
+        height: 70vh;
+        
+    }
+    .landing-pic{
+        width: 100vw;
+        height: 100vh;
+    }
+  }
+  
+  /* iPads (landscape) ----------- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+    
+       .loading-container{
+        width: 100%;
+        height: 70vh;
+        
+    }
+    .landing-pic{
+        width: 100vw;
+        height: 100vh;
+    }
+  }
+  
+  /* iPads (portrait) ----------- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+    
+       .loading-container{
+        width: 100%;
+        height: 70vh;
+        
+    }
+    .landing-pic{
+        width: 100vw;
+        height: 100vh;
+    }
+  }
+ 
+  
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    
+       .loading-container{
+        width: 100%;
+        height: 70vh;
+        
+    }
+    .landing-pic{
+        width: 100vw;
+        height: 100vh;
+    }
+  }
+ 

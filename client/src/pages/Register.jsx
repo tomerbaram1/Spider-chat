@@ -70,8 +70,9 @@ function Signup() {
     return (
         <Container>
             <Row>
-                <Col md={7} className="d-flex align-items-center justify-content-center flex-direction-column">
-                    <Form className="form" style={{ width: "80%", maxWidth: 500 }} onSubmit={onSubmit}>
+                <Col md={25}  className="d-flex align-items-center justify-content-center flex-direction-column  ">
+                  
+                    <Form className="register-form" style={{ width: "80%", maxWidth: 500 }} onSubmit={onSubmit}>
                         <h1 className="text-center">Create account</h1>
                         <div className="signup-profile-pic__container">
                             {/* <img src={imagePreview || botImg} className="signup-profile-pic" /> */}
@@ -90,26 +91,30 @@ function Signup() {
                             <Form.Control type="email" placeholder="Enter email" onChange={onChange} id="email"  name="email" value={email} />
                             <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
                         </Form.Group>
-
                         <Form.Group className="mb-3" >
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" onChange={onChange} name="password" id="password" value={password} />
                         </Form.Group>
                         <Form.Group className="mb-3" >
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>Confirm Password</Form.Label>
                             <Form.Control type="password" placeholder="Confirm password" onChange={onChange} name="password2" id="password2" value={password2} />
                         </Form.Group>
                         <Button variant="primary" type="submit">
                              Signup
                         </Button>
-                        <div className="py-4">
-                            <p className="text-center">
+                        <div className="py-2">
+                            <p className="text-center text-secondery">
                                 Already have an account ? <Link to="/login">Login</Link>
                             </p>
                         </div>
                     </Form>
                 </Col>
-                <Col md={3} className="signup__bg"></Col>
+                <Col md={3} className="stripe">
+                <div class="bg"></div>
+                  <div class="bg bg2"></div>
+                  <div class="bg bg3"></div>
+
+                </Col>
             </Row>
         </Container>
     );
