@@ -63,15 +63,15 @@ io.on('connection',(socket) =>{
 
   socket.on('join',(room) => {
     socket.join(room)
-    console.log("A user has joined group:", room);
+
   })
 
 
   socket.on('message', async ({ message, room, name }) => {
 
     const newMessage = await saveMessage(message, name, room);
-    console.log(newMessage);
-    io.in(room).emit('replayMessage', newMessage);
+
+    io.in(room).emit('replayMessage', newMessage.newMessage);
   });
     
 
